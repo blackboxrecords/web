@@ -10,7 +10,7 @@ export default class Home extends React.Component<{}> {
     return (
       <>
         Hello World
-        </>
+      </>
     )
   }
 }
