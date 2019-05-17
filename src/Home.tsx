@@ -13,13 +13,21 @@ export default class Home extends React.Component<{
 
   render() {
     return (
-      <>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}>
         <div style={{
           fontSize: 18,
           marginBottom: 8,
         }}>
           Black Box Records Spotify Accounts
         </div>
+        <button onClick={() => {
+          this.props.user.exportData()
+        }}>Export All</button>
         {this.props.user.users.map((user: any) => {
           return (
             <div key={user._id}>
@@ -28,12 +36,12 @@ export default class Home extends React.Component<{
               <span>{user.email}</span>
               <span> - </span>
               <button onClick={() => {
-                this.props.user.exportData(user._id)
-              }}>Export Data</button>
+                this.props.user.syncUser(user._id)
+              }}>Sync</button>
             </div>
           )
         })}
-      </>
+      </div>
     )
   }
 }
