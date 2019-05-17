@@ -25,23 +25,7 @@ export default class UserStore {
     }
   }
 
-  async exportData(userId: string) {
-    try {
-      await this.syncUser(userId)
-      const { data } = await axios.get('https://spotify-connect.plug.sh/users/artists', {
-        params: {
-          userId,
-        },
-        responseType: 'blob',
-      })
-      const url = window.URL.createObjectURL(new Blob([data]))
-      const link = document.createElement('a')
-      link.href=url
-      link.setAttribute('download', 'artist-data.csv')
-      link.click()
-      link.parentNode.removeChild(link)
-    } catch (err) {
-      console.log('Error exporting artist data', err)
-    }
+  async exportData() {
+    window.open('https://spotify-connect.plug.sh/users/artists', '_blank')
   }
 }
