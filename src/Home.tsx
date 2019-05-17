@@ -14,19 +14,25 @@ export default class Home extends React.Component<{
   render() {
     return (
       <>
-      {this.props.user.users.map((user: any) => {
-        return (
-          <div key={user._id}>
-            <span>{user.name}</span>
-            <span> - </span>
-            <span>{user.email}</span>
-            <span> - </span>
-            <button onClick={() => {
-              
-            }}>Export Data</button>
-          </div>
-        )
-      })}
+        <div style={{
+          fontSize: 18,
+          marginBottom: 8,
+        }}>
+          Black Box Records Spotify Accounts
+        </div>
+        {this.props.user.users.map((user: any) => {
+          return (
+            <div key={user._id}>
+              <span>{user.name}</span>
+              <span> - </span>
+              <span>{user.email}</span>
+              <span> - </span>
+              <button onClick={() => {
+                this.props.user.exportData(user._id)
+              }}>Export Data</button>
+            </div>
+          )
+        })}
       </>
     )
   }
