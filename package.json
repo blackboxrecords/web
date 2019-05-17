@@ -10,9 +10,15 @@
     "now-build": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "eslintConfig": {
+    "extends": [
+      "@jchancehud/eslint-config"
+    ]
+  },
   "author": "Chance Hudson",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "mobx": "^5.9.4",
     "mobx-react": "^5.4.3",
     "react": "^16.8.6",
@@ -27,6 +33,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@jchancehud/eslint-config-typescript": "0.0.5",
+    "@types/axios": "^0.14.0",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.3",

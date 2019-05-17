@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './Home'
 import { Provider } from 'mobx-react'
+import UserStore from './stores/user'
 
 Object.assign(document.body.style, {
   margin: 'auto',
@@ -12,6 +13,7 @@ Object.assign(document.body.style, {
 })
 
 const stores = {
+  user: new UserStore(),
 }
 
 const appDiv = document.getElementById('app')
