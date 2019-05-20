@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "alias": ["spotify-web.plug.sh"],
+  "alias": ["spotify-web.plug.sh", "spotify-web.blackboxrecordclub.com"],
   "builds": [
     {
       "src": "package.json",
