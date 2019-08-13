@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './Home'
 import { Provider } from 'mobx-react'
 import UserStore from './stores/user'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'http://localhost:4000'
 
 Object.assign(document.body.style, {
   margin: 'auto',

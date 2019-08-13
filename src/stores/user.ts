@@ -6,8 +6,9 @@ export default class UserStore {
 
   async loadUsers() {
     try {
-      const { data: users } = await axios.get('https://spotify-connect.plug.sh/users')
+      const { data: users } = await axios.get('/users')
       this.users = users
+      console.log(users[0])
     } catch (err) {
       console.log('Error loading users', err)
     }
@@ -15,10 +16,10 @@ export default class UserStore {
 
   async syncUser(userId: string) {
     try {
-      await axios.get('https://spotify-connect.plug.sh/sync', {
+      await axios.get('/sync', {
         params: {
           userId,
-        }
+        },
       })
     } catch (err) {
       console.log('Error syncing user artist data', err)
@@ -26,6 +27,6 @@ export default class UserStore {
   }
 
   async exportData() {
-    window.open('https://spotify-connect.plug.sh/users/artists', '_blank')
+    window.open(axios.defaults.baseURL + '/users/artists', '_blank')
   }
 }
