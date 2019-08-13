@@ -1,16 +1,41 @@
 import axios from 'axios'
 import { observable } from 'mobx'
 
+export interface User {
+  _id: string
+  name: string
+  email: string
+  lastSynced: string
+}
+
 export default class UserStore {
-  @observable users: {}[] = []
+  @observable users: User[] = []
+  @observable usersById: { [key: string] : User } = {}
+
+  userById(id: string) {
+    return this.usersById[id] || {} as User
+  }
 
   async loadUsers() {
     try {
       const { data: users } = await axios.get('/users')
+      users.forEach((user: User) => {
+        this.usersById[user._id] = user
+      })
       this.users = users
-      console.log(users[0])
     } catch (err) {
       console.log('Error loading users', err)
+    }
+  }
+
+  async loadUser(id: string) {
+    try {
+      const { data: user } = await axios.get('/users', {
+        params: { id },
+      })
+      this.usersById[user._id] = user
+    } catch (err) {
+      console.log('Error loading user', err)
     }
   }
 
