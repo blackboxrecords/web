@@ -45,7 +45,13 @@ export default class Home extends React.Component<{
             >
               Black Box Records Spotify Accounts
             </div>
-            <div>
+            <div
+              style={{
+                margin: 4,
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
               <button
                 onClick={() => {
                   window.open(
@@ -56,12 +62,19 @@ export default class Home extends React.Component<{
               >
                 Spotify Auth
               </button>
+              <div style={{ height: 4 }} />
+              <input
+                type="text"
+                readOnly
+                value={`${axios.defaults.baseURL}/spotify/auth`}
+              />
             </div>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'flex-end',
+                margin: 4,
               }}
             >
               <div>
