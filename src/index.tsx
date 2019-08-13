@@ -6,6 +6,7 @@ import { Provider } from 'mobx-react'
 import UserStore from './stores/user'
 import axios from 'axios'
 
+// axios.defaults.baseURL = 'https://backend.spotify-dev.now.sh'
 axios.defaults.baseURL = 'http://localhost:4000'
 
 Object.assign(document.body.style, {

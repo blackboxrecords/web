@@ -51,7 +51,11 @@ export default class UserStore {
     }
   }
 
-  async exportData() {
+  exportData() {
     window.open(axios.defaults.baseURL + '/users/artists', '_blank')
+  }
+
+  exportUnheardData() {
+    window.open(axios.defaults.baseURL + '/users/artists/unheard', '_blank')
   }
 }

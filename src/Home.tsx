@@ -2,6 +2,7 @@ import React from 'react'
 import { inject, observer } from 'mobx-react'
 import UserStore from './stores/user'
 import UserCell from './components/UserCell'
+import axios from 'axios'
 
 @inject('user')
 @observer
@@ -47,11 +48,41 @@ export default class Home extends React.Component<{
             <div>
               <button
                 onClick={() => {
-                  user.exportData()
+                  window.open(
+                    `${axios.defaults.baseURL}/spotify/auth`,
+                    '_blank'
+                  )
                 }}
               >
-                Export All
+                Spotify Auth
               </button>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+              }}
+            >
+              <div>
+                <button
+                  onClick={() => {
+                    user.exportData()
+                  }}
+                >
+                  Export All
+                </button>
+              </div>
+              <div style={{ height: 4 }} />
+              <div>
+                <button
+                  onClick={() => {
+                    user.exportUnheardData()
+                  }}
+                >
+                  Export Unheard
+                </button>
+              </div>
             </div>
           </div>
           {user.users.map((user) => (
