@@ -25,25 +25,35 @@ export default class Home extends React.Component<{
       >
         <div
           style={{
-            fontSize: 18,
-            marginBottom: 8,
-          }}
-        >
-          Black Box Records Spotify Accounts
-        </div>
-        <button
-          onClick={() => {
-            user.exportData()
-          }}
-        >
-          Export All
-        </button>
-        <div
-          style={{
             display: 'flex',
             flexDirection: 'column',
           }}
         >
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              padding: 4,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 18,
+                marginBottom: 8,
+              }}
+            >
+              Black Box Records Spotify Accounts
+            </div>
+            <div>
+              <button
+                onClick={() => {
+                  user.exportData()
+                }}
+              >
+                Export All
+              </button>
+            </div>
+          </div>
           {user.users.map((user) => (
             <UserCell userId={user._id} />
           ))}
