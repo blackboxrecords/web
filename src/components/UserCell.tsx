@@ -8,9 +8,10 @@ import moment from 'moment'
 export default class UserCell extends React.Component<{
   userId: string
   user?: UserStore
+  style?: any
 }> {
   render() {
-    const { user, userId } = this.props
+    const { user, userId, style } = this.props
     const _user: User = this.props.user.userById(userId)
     return (
       <div
@@ -19,6 +20,7 @@ export default class UserCell extends React.Component<{
           display: 'flex',
           justifyContent: 'space-between',
           padding: 4,
+          ...(style || {}),
         }}
       >
         <div style={{ display: 'flex' }}>

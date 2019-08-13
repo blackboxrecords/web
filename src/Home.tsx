@@ -98,8 +98,13 @@ export default class Home extends React.Component<{
               </div>
             </div>
           </div>
-          {user.users.map((user) => (
-            <UserCell userId={user._id} />
+          {user.users.map((user, index) => (
+            <UserCell
+              style={{
+                backgroundColor: index % 2 === 0 ? '#ddd' : 'white',
+              }}
+              userId={user._id}
+            />
           ))}
         </div>
       </div>
