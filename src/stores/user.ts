@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { observable } from 'mobx'
+import ParallelPromise from '../ParallelPromise'
 
 export interface User {
   _id: string
@@ -49,6 +50,12 @@ export default class UserStore {
     } catch (err) {
       console.log('Error syncing user artist data', err)
     }
+  }
+
+  async syncAllUsers() {
+    await ParallelPromise(this.users.length, async (i) => {
+      await this.syncUser(this.users[i]._id)
+    })
   }
 
   exportData() {

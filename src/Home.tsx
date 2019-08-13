@@ -9,8 +9,22 @@ import axios from 'axios'
 export default class Home extends React.Component<{
   user?: UserStore
 }> {
+  state = {
+    syncingAll: false,
+  }
   async componentDidMount() {
     await this.props.user.loadUsers()
+  }
+
+  syncAll = async () => {
+    try {
+      this.setState({ syncingAll: true })
+      await this.props.user.syncAllUsers()
+      await this.props.user.loadUsers()
+    } catch (err) {
+      console.log('Error syncing all', err)
+    }
+    this.setState({ syncingAll: false })
   }
 
   render() {
@@ -41,9 +55,18 @@ export default class Home extends React.Component<{
               style={{
                 fontSize: 18,
                 marginBottom: 8,
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              Black Box Records Spotify Accounts
+              <div>Black Box Records Spotify Accounts</div>
+              <div>
+                {this.state.syncingAll ? (
+                  <div style={{ fontSize: 15 }}>syncing...</div>
+                ) : (
+                  <button onClick={this.syncAll}>Sync All Users</button>
+                )}
+              </div>
             </div>
             <div
               style={{
