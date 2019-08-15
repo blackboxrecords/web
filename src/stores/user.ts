@@ -62,7 +62,7 @@ export default class UserStore {
     window.open(axios.defaults.baseURL + '/users/artists', '_blank')
   }
 
-  exportUnheardData() {
-    window.open(axios.defaults.baseURL + '/users/artists/unheard', '_blank')
+  exportRelatedData() {
+    window.open(axios.defaults.baseURL + '/users/artists/related', '_blank')
   }
 }

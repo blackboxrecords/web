@@ -113,10 +113,10 @@ export default class Home extends React.Component<{
               <div>
                 <button
                   onClick={() => {
-                    user.exportUnheardData()
+                    user.exportRelatedData()
                   }}
                 >
-                  Export Unheard
+                  Export Related
                 </button>
               </div>
             </div>
