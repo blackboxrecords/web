@@ -20,8 +20,13 @@ export default class UserStore {
     return this.usersById[id] || {} as User
   }
 
+  async ping() {
+    await axios.get('/ping')
+  }
+
   async loadUsers() {
     try {
+      await this.ping()
       const { data: users } = await axios.get('/users')
       users.forEach((user: User) => {
         this.usersById[user._id] = user
@@ -81,13 +86,13 @@ export default class UserStore {
   }
 
   async exportData() {
-    await axios.get('/ping')
+    await this.ping()
     window.open(axios.defaults.baseURL + '/users/artists', '_blank')
   }
 
   async exportRelatedData() {
     // Warm the lambda
-    await axios.get('/ping')
+    await this.ping()
     window.open(axios.defaults.baseURL + '/users/artists/related', '_blank')
   }
 }
