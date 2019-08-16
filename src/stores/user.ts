@@ -71,7 +71,7 @@ export default class UserStore {
       } catch (err) {
         console.log('Error syncing user', this.users[i]._id)
       }
-    }, 3)
+    }, 2)
   }
 
   exportData() {
