@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { observable, action } from 'mobx'
 import ParallelPromise from '@jchancehud/parallel-promise'
+import moment from 'moment'
 
 export interface User {
   _id: string
@@ -67,7 +68,12 @@ export default class UserStore {
     await ParallelPromise(this.users.length, async (i) => {
       cb(i)
       try {
-        await this.syncUser(this.users[i]._id)
+        const { lastSynced, _id }= this.users[i]
+        if (
+          lastSynced &&
+          moment().diff(moment(lastSynced), 'minutes') < 30
+        ) return // skip users that have been synced in the past 30 minutes
+        await this.syncUser(_id)
       } catch (err) {
         console.log('Error syncing user', this.users[i]._id)
       }
