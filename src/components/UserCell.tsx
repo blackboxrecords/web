@@ -36,7 +36,6 @@ export default class UserCell extends React.Component<{
           <button
             onClick={async () => {
               await user.syncUser(_user._id)
-              await user.loadUser(_user._id)
             }}
           >
             Sync
