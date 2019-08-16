@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { observable, action } from 'mobx'
+import { observable } from 'mobx'
 import ParallelPromise from '@jchancehud/parallel-promise'
 import moment from 'moment'
 
@@ -68,7 +68,7 @@ export default class UserStore {
     await ParallelPromise(this.users.length, async (i) => {
       cb(i)
       try {
-        const { lastSynced, _id }= this.users[i]
+        const { lastSynced, _id } = this.users[i]
         if (
           lastSynced &&
           moment().diff(moment(lastSynced), 'minutes') < 30
