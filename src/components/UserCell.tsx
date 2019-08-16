@@ -29,8 +29,11 @@ export default class UserCell extends React.Component<{
           <div>{_user.email}</div>
         </div>
         <div style={{ flex: 1, minWidth: 100 }} />
-        {_user.lastSynced ? (
+        {!_user.isSyncing && _user.lastSynced ? (
           <div>Last synced {moment(_user.lastSynced).from(moment())}</div>
+        ) : null}
+        {_user.isSyncing ? (
+          <div style={{ color: 'green' }}>currently syncing...</div>
         ) : null}
         <div style={{ marginLeft: 8 }}>
           <button

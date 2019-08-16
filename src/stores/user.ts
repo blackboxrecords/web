@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 import ParallelPromise from '@jchancehud/parallel-promise'
 
 export interface User {
@@ -7,11 +7,13 @@ export interface User {
   name: string
   email: string
   lastSynced: string
+  isSyncing?: boolean
 }
 
 export default class UserStore {
   @observable users: User[] = []
   @observable usersById: { [key: string] : User } = {}
+  @observable syncInProgress = false
 
   userById(id: string) {
     return this.usersById[id] || {} as User
@@ -42,6 +44,10 @@ export default class UserStore {
 
   async syncUser(userId: string) {
     try {
+      this.usersById[userId] = {
+        ...this.userById(userId),
+        isSyncing: true,
+      }
       const { data: user } = await axios.get('/sync', {
         params: {
           userId,
@@ -50,13 +56,22 @@ export default class UserStore {
       this.usersById[userId] = user
     } catch (err) {
       console.log('Error syncing user artist data', err)
+      this.usersById[userId] = {
+        ...this.userById(userId),
+        isSyncing: false,
+      }
     }
   }
 
-  async syncAllUsers() {
+  async syncAllUsers(cb?: (i: number) => any) {
     await ParallelPromise(this.users.length, async (i) => {
-      await this.syncUser(this.users[i]._id)
-    }, 1)
+      cb(i)
+      try {
+        await this.syncUser(this.users[i]._id)
+      } catch (err) {
+        console.log('Error syncing user', this.users[i]._id)
+      }
+    }, 3)
   }
 
   exportData() {

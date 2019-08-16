@@ -11,6 +11,7 @@ export default class Home extends React.Component<{
 }> {
   state = {
     syncingAll: false,
+    syncProgress: 0,
   }
   async componentDidMount() {
     await this.props.user.loadUsers()
@@ -19,8 +20,11 @@ export default class Home extends React.Component<{
   syncAll = async () => {
     try {
       this.setState({ syncingAll: true })
-      await this.props.user.syncAllUsers()
-      await this.props.user.loadUsers()
+      await this.props.user.syncAllUsers((i) => {
+        this.setState({
+          syncProgress: i,
+        })
+      })
     } catch (err) {
       console.log('Error syncing all', err)
     }
@@ -29,6 +33,7 @@ export default class Home extends React.Component<{
 
   render() {
     const { user } = this.props
+    const { syncProgress, syncingAll } = this.state
     return (
       <div
         style={{
@@ -61,8 +66,10 @@ export default class Home extends React.Component<{
             >
               <div>Black Box Records Spotify Accounts</div>
               <div>
-                {this.state.syncingAll ? (
-                  <div style={{ fontSize: 15 }}>syncing...</div>
+                {syncingAll ? (
+                  <div style={{ fontSize: 15 }}>
+                    syncing... {`${syncProgress}/${user.users.length}`}
+                  </div>
                 ) : (
                   <button onClick={this.syncAll}>Sync All Users</button>
                 )}
