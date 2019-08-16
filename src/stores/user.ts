@@ -80,11 +80,14 @@ export default class UserStore {
     }, 2)
   }
 
-  exportData() {
+  async exportData() {
+    await axios.get('/ping')
     window.open(axios.defaults.baseURL + '/users/artists', '_blank')
   }
 
-  exportRelatedData() {
+  async exportRelatedData() {
+    // Warm the lambda
+    await axios.get('/ping')
     window.open(axios.defaults.baseURL + '/users/artists/related', '_blank')
   }
 }
