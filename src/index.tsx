@@ -6,7 +6,6 @@ import { Provider } from 'mobx-react'
 import UserStore from './stores/user'
 import axios from 'axios'
 
-// axios.defaults.baseURL = 'https://backend.blackboxrecords.now.sh'
 // axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.baseURL = 'https://spotify-api-temp.stardev.co'
 
