@@ -5,9 +5,11 @@ import Home from './Home'
 import { Provider } from 'mobx-react'
 import UserStore from './stores/user'
 import axios from 'axios'
+import RecommendedArtists from './RecommendedArtists'
 
 // axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.baseURL = 'https://spotify-api-temp.stardev.co'
+// axios.defaults.baseURL = 'https://backend.spotify-web.blackboxrecordcompany.com'
 
 Object.assign(document.body.style, {
   margin: 'auto',
@@ -38,6 +40,7 @@ ReactDOM.render(
   <Provider {...stores}>
     <Router>
       <Route path="/" component={Home} exact />
+      <Route path="/:userId/recommended" component={RecommendedArtists} />
     </Router>
   </Provider>,
   appDiv
