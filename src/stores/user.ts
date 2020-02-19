@@ -88,4 +88,8 @@ export default class UserStore {
     // Warm the lambda
     window.open(axios.defaults.baseURL + '/users/artists/related', '_blank')
   }
+
+  exportGenreData() {
+    window.open(axios.defaults.baseURL + '/users/genres', '_blank')
+  }
 }

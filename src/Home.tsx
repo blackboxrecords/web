@@ -127,6 +127,18 @@ export default class Home extends React.Component<{
                 </button>
               </div>
             </div>
+            <div>
+              <div style={{ height: 4 }} />
+              <div>
+                <button
+                  onClick={() => {
+                    user.exportGenreData()
+                  }}
+                >
+                  Export Genres
+                </button>
+              </div>
+            </div>
           </div>
           {user.users.map((user, index) => (
             <UserCell
