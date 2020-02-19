@@ -32,9 +32,13 @@ export default class UserCell extends React.Component<{
         {!_user.isSyncing && _user.lastSynced ? (
           <div>Last synced {moment(_user.lastSynced).from(moment())}</div>
         ) : null}
-        {_user.isSyncing ? (
+        {!_user.hasToken && (
+          <div style={{ marginLeft: 4, color: 'red' }}>No active token</div>
+        )}
+        {_user.isSyncing && _user.hasToken ? (
           <div style={{ color: 'green' }}>currently syncing...</div>
         ) : null}
+        {_user.hasToken ? (
         <div style={{ marginLeft: 8 }}>
           <button
             onClick={async () => {
@@ -44,6 +48,7 @@ export default class UserCell extends React.Component<{
             Sync
           </button>
         </div>
+        ) : null}
       </div>
     )
   }
