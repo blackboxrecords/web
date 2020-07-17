@@ -44,6 +44,18 @@ export default class UserStore {
     }
   }
 
+  async deleteUser(id: string) {
+    try {
+      await axios.delete(`/users/${id}`)
+      delete this.usersById[id]
+      this.users = this.users.filter((user) => {
+        return user._id !== id
+      })
+    } catch (err) {
+      console.log('Error deleting user', err)
+    }
+  }
+
   async syncUser(userId: string) {
     try {
       this.usersById[userId] = {
@@ -55,7 +67,11 @@ export default class UserStore {
           userId,
         },
       })
-      this.usersById[userId] = user
+      this.usersById[userId] = {
+        ...this.userById(userId),
+        isSyncing: false,
+        ...user,
+      }
     } catch (err) {
       console.log('Error syncing user artist data', err)
       this.usersById[userId] = {

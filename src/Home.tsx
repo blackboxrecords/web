@@ -146,6 +146,7 @@ export default class Home extends React.Component<{
                 backgroundColor: index % 2 === 0 ? '#ddd' : 'white',
               }}
               userId={user._id}
+              key={user._id}
             />
           ))}
         </div>

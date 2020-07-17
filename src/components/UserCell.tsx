@@ -38,17 +38,28 @@ export default class UserCell extends React.Component<{
         {_user.isSyncing && _user.hasToken ? (
           <div style={{ color: 'green' }}>currently syncing...</div>
         ) : null}
-        {_user.hasToken ? (
-        <div style={{ marginLeft: 8 }}>
+        <div style={{ marginLeft: 8, display: 'flex' }}>
+          {_user.hasToken ? (
+            <>
+              <button
+                onClick={async () => {
+                  await user.syncUser(_user._id)
+                }}
+              >
+                Sync
+              </button>
+              <div style={{ width: '4px' }} />
+            </>
+          ) : null}
           <button
             onClick={async () => {
-              await user.syncUser(_user._id)
+              if (!confirm('Delete user?')) return
+              await user.deleteUser(_user._id)
             }}
           >
-            Sync
+            Delete
           </button>
         </div>
-        ) : null}
       </div>
     )
   }
