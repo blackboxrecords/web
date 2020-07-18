@@ -98,15 +98,15 @@ export default class UserStore {
   }
 
   exportData() {
-    window.open(axios.defaults.baseURL + '/users/artists', '_blank')
+    window.open('http://3.19.41.53:4000/users/artists', '_blank')
   }
 
   exportRelatedData() {
     // Warm the lambda
-    window.open(axios.defaults.baseURL + '/users/artists/related', '_blank')
+    window.open('http://3.19.41.53:4000/users/artists/related', '_blank')
   }
 
   exportGenreData() {
-    window.open(axios.defaults.baseURL + '/users/genres', '_blank')
+    window.open('http://3.19.41.53:4000/users/genres', '_blank')
   }
 }
