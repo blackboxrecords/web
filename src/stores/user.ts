@@ -125,15 +125,15 @@ export default class UserStore {
   }
 
   exportData() {
-    window.open(`http://3.19.41.53:4000/users/artists?token=${this.activeAuth.token}`, '_blank')
+    window.open(`http://3.128.164.35:4000/users/artists?token=${this.activeAuth.token}`, '_blank')
   }
 
   exportRelatedData() {
-    window.open(`http://3.19.41.53:4000/users/artists/related?token=${this.activeAuth.token}`, '_blank')
+    window.open(`http://3.128.164.35:4000/users/artists/related?token=${this.activeAuth.token}`, '_blank')
   }
 
   exportGenreData() {
-    window.open(`http://3.19.41.53:4000/users/genres?token=${this.activeAuth.token}`, '_blank')
+    window.open(`http://3.128.164.35:4000/users/genres?token=${this.activeAuth.token}`, '_blank')
   }
 
   async login(username: string, password: string) {
