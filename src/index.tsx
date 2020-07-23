@@ -5,6 +5,7 @@ import Home from './Home'
 import { Provider } from 'mobx-react'
 import UserStore from './stores/user'
 import axios from 'axios'
+import Auth from './Auth'
 
 // axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.baseURL = 'https://backend.blackboxrecords.now.sh'
@@ -38,6 +39,7 @@ ReactDOM.render(
   <Provider {...stores}>
     <Router>
       <Route path="/" component={Home} exact />
+      <Route path="/auth" component={Auth} />
     </Router>
   </Provider>,
   appDiv

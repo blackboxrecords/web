@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react'
 import UserStore from './stores/user'
 import UserCell from './components/UserCell'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 @inject('user')
 @observer
@@ -34,6 +35,9 @@ export default class Home extends React.Component<{
   render() {
     const { user } = this.props
     const { syncProgress, syncingAll } = this.state
+    if (!user.authenticated) {
+      return <Redirect to="/auth" />
+    }
     return (
       <div
         style={{
