@@ -124,16 +124,16 @@ export default class UserStore {
     }, 2)
   }
 
-  exportData() {
-    window.open(`http://3.128.164.35:4000/users/artists?token=${this.activeAuth.token}`, '_blank')
+  exportData(refresh = false) {
+    window.open(`http://3.128.164.35:4000/users/artists?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
   }
 
-  exportRelatedData() {
-    window.open(`http://3.128.164.35:4000/users/artists/related?token=${this.activeAuth.token}`, '_blank')
+  exportRelatedData(refresh = false) {
+    window.open(`http://3.128.164.35:4000/users/artists/related?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
   }
 
-  exportGenreData() {
-    window.open(`http://3.128.164.35:4000/users/genres?token=${this.activeAuth.token}`, '_blank')
+  exportGenreData(refresh = false) {
+    window.open(`http://3.128.164.35:4000/users/genres?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
   }
 
   async login(username: string, password: string) {

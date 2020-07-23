@@ -4,6 +4,7 @@ import UserStore from './stores/user'
 import UserCell from './components/UserCell'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import refreshIcon from '../static/refresh.png'
 
 @inject('user')
 @observer
@@ -111,7 +112,14 @@ export default class Home extends React.Component<{
                 margin: 4,
               }}
             >
-              <div>
+              <div style={{ display: 'flex' }}>
+                <button
+                  onClick={() => {
+                    user.exportData(true)
+                  }}
+                >
+                  <img width="13px" height="13px" src={refreshIcon} />
+                </button>
                 <button
                   onClick={() => {
                     user.exportData()
@@ -121,7 +129,14 @@ export default class Home extends React.Component<{
                 </button>
               </div>
               <div style={{ height: 4 }} />
-              <div>
+              <div style={{ display: 'flex' }}>
+                <button
+                  onClick={() => {
+                    user.exportRelatedData(true)
+                  }}
+                >
+                  <img width="13px" height="13px" src={refreshIcon} />
+                </button>
                 <button
                   onClick={() => {
                     user.exportRelatedData()
@@ -133,7 +148,14 @@ export default class Home extends React.Component<{
             </div>
             <div>
               <div style={{ height: 4 }} />
-              <div>
+              <div style={{ display: 'flex' }}>
+                <button
+                  onClick={() => {
+                    user.exportGenreData(true)
+                  }}
+                >
+                  <img width="13px" height="13px" src={refreshIcon} />
+                </button>
                 <button
                   onClick={() => {
                     user.exportGenreData()
