@@ -125,15 +125,15 @@ export default class UserStore {
   }
 
   exportData(refresh = false) {
-    window.open(`http://3.128.164.35:4000/users/artists?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
+    window.open(`https://spotify-web-export.blackboxrecordclub.com/users/artists?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
   }
 
   exportRelatedData(refresh = false) {
-    window.open(`http://3.128.164.35:4000/users/artists/related?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
+    window.open(`https://spotify-web-export.blackboxrecordclub.com/users/artists/related?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
   }
 
   exportGenreData(refresh = false) {
-    window.open(`http://3.128.164.35:4000/users/genres?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
+    window.open(`https://spotify-web-export.blackboxrecordclub.com/users/genres?refresh=${refresh}&token=${this.activeAuth.token}`, '_blank')
   }
 
   async login(username: string, password: string) {
